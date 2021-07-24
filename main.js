@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 //make list of all active elements in array "el"
 let el = Array.prototype.slice.call(document.querySelectorAll('div[tabindex]'));
 el = el.concat(Array.prototype.slice.call(document.querySelectorAll('button')));
@@ -76,7 +78,8 @@ const winingConditions = [
 ]
 
 function playerMove(index) {
-    document.activeElement.classList.add('cross');
+    el[index - 1].classList.add('cross');
+    console.log('Player: ', index);
     check() ? win('Player') : aiMove();
 }
 
@@ -102,33 +105,34 @@ function chooseStrategy() {
         }
     })
     if (chosenStrategy !== undefined && listOfAvailableStrategy.includes(chosenStrategy)) {
-        return chosenStrategy;
+        return true;
     } else if (listOfAvailableStrategy.length > 0) {
         chosenStrategy = listOfAvailableStrategy[Math.floor(Math.random() * listOfAvailableStrategy.length)];
-        return chosenStrategy;
+        return true;
     } else {
-            win('No one');
-            return false;
+        win('No one');
+        return false;
     }
 }
 
 function aiMove() {
     if (!chooseStrategy()) {
+        console.log('break');
         return
     }
     let index = Math.floor(Math.random() * winingConditions[chosenStrategy].length);
     let value = winingConditions[chosenStrategy][index];
+    console.log('winingConditions[chosenStrategy][index]: ', winingConditions[chosenStrategy][index]);
+    console.log('winingConditions[chosenStrategy]: ', winingConditions[chosenStrategy]);
     if (el[value].classList.value === 'zero') {
-        if (index !== 0) {
-            index = 0;
+        index = 0;
+        value = winingConditions[chosenStrategy][index];
+        if (el[value].classList.value === 'zero') {
+            index = 1;
             value = winingConditions[chosenStrategy][index];
             if (el[value].classList.value === 'zero') {
-                index = 1;
+                index = 2;
                 value = winingConditions[chosenStrategy][index];
-                if (el[value].classList.value === 'zero') {
-                    index = 2;
-                    value = winingConditions[chosenStrategy][index];
-                }
             }
         }
     }
@@ -142,12 +146,11 @@ function aiMove() {
 
 function win(who) {
     console.log(who);
-    /*
     let result = confirm(`${who} is win!
 Play one more time?`);
     if (result) {
         document.location.reload();
     } else {
         Escape();
-    }*/
+    }
 }
