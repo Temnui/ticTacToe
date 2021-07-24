@@ -1,0 +1,38 @@
+body {
+    font-size: 16vh;
+    margin: 0 auto;
+    text-align: center;
+}
+
+button {
+    font-size: 10vh;
+    width: 30vh;
+}
+
+.row {
+    clear: both;
+    margin: 0 auto;
+    width: 77vh;
+}
+
+.row div {
+    float: left;
+    height: 25vh;
+    width: 25vh;
+    border: 2px solid #cccccc;
+    border-radius: 3px;
+}
+
+.row div:hover {
+    border-color: black;
+}
+
+.cross:after {
+    display: inline-block;
+    content: "\2573";
+}
+
+.zero:after {
+    display: inline-block;
+    content: "\26aa";
+}
