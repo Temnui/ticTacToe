@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <link href="css.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <script type="text/javascript" src="./ads.js"></script>
     <title>Tic Tac Toe</title>
 </head>
-<body>
+<body onload=initDesktopAutoplayExample()>
+<div id="adContainer"></div>
+<button id="playButton">Play</button>
 <div style="margin: 0 auto">
     <div class="row">
         <div tabindex="1">
@@ -36,9 +40,6 @@
     <button  tabindex="10">Exit</button>
     <button  tabindex="11">New game</button>
 </div>
-<script nomodule>
-    alert('Attention your browser does not support modules, please use more modern browsers.')
-</script>
 <script type="text/javascript" src="./main.js"></script>
 </body>
 </html>
